@@ -77,7 +77,7 @@ Esta constancia se expide a solicitud del interesado para los fnes que considere
 ${employeeName}\n
 ${employerPosition}\n
 ${employerCompany}\n
-${DateFormatter.getDDMMMMYYY(new Date())}}\n`,
+${DateFormatter.getDDMMMMYYY(new Date())}\n`,
         style: 'signature',
       },
     ],
