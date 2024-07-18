@@ -3,7 +3,7 @@ import {
   StyleDictionary,
   TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { DateFormatter } from 'src/helpers';
+import { headerSection } from './sections/header.section';
 
 const styles: StyleDictionary = {
   header: {
@@ -30,16 +30,10 @@ const logo: Content = {
 };
 export const getEmploymentLetter = (): TDocumentDefinitions => {
   const docDefinition: TDocumentDefinitions = {
-    header: {
-      columns: [
-        logo,
-        {
-          text: `${DateFormatter.getDDMMMMYYY(new Date())}`,
-          alignment: 'right',
-          margin: [20, 20],
-        },
-      ],
-    },
+    header: headerSection({
+      showDate: false,
+      showLogo: false,
+    }),
     footer: {
       text: 'Este documento es una constancia de empleo y no representa un compromiso laboral',
       style: {
