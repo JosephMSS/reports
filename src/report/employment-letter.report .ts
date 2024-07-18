@@ -31,8 +31,8 @@ const logo: Content = {
 export const getEmploymentLetter = (): TDocumentDefinitions => {
   const docDefinition: TDocumentDefinitions = {
     header: headerSection({
-      showDate: false,
-      showLogo: false,
+      showDate: true,
+      showLogo: true,
     }),
     footer: {
       text: 'Este documento es una constancia de empleo y no representa un compromiso laboral',
