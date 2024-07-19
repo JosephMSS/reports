@@ -1,8 +1,5 @@
 import { countries as Country } from '@prisma/client';
-import {
-  StyleDictionary,
-  TDocumentDefinitions
-} from 'pdfmake/interfaces';
+import { StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { footerSection, headerSection } from './sections';
 const styles: StyleDictionary = {
   header: {
@@ -41,9 +38,8 @@ export const getCountryReport = (
     styles: styles,
     content: [
       {
+        layout: 'lightHorizontalLines',
         table: {
-          // headers are automatically repeated if the table spans over multiple pages
-          // you can declare how many rows should be treated as headers
           headerRows: 1,
           widths: [50, 50, 50, '*', '*', '*'],
 
@@ -57,9 +53,37 @@ export const getCountryReport = (
               country.continent,
               country.local_name,
             ]),
+            ['', '', '', '', 'Totales', `${countries.length.toString()}`],
           ],
         },
       },
+
+      //#section Total table
+      {
+        text: 'Totales',
+        style: {
+          fontSize: 16,
+          margin: [0, 40, 0, 0],
+        },
+      },
+      {
+        table: {
+          widths: [50, 50, 50, '*', '*', '*'],
+          body: [
+            [
+              { text: 'Total Counties', colSpan: 2, bold: true },
+              {},
+              {},
+              {
+                text: `Countries ${countries.length.toString()}`,
+              },
+              {},
+              {},
+            ],
+          ],
+        },
+      },
+      //#endsection Total table
     ],
   };
   return docDefinition;
