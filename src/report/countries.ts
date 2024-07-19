@@ -1,6 +1,7 @@
 import { countries as Country } from '@prisma/client';
 import { StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { footerSection, headerSection } from './sections';
+import { CUSTOM_LAYOUTS } from 'src/printer/printer.service';
 const styles: StyleDictionary = {
   header: {
     fontSize: 22,
@@ -38,7 +39,7 @@ export const getCountryReport = (
     styles: styles,
     content: [
       {
-        layout: 'lightHorizontalLines',
+        layout: CUSTOM_LAYOUTS.CUSTOM_01,
         table: {
           headerRows: 1,
           widths: [50, 50, 50, '*', '*', '*'],
@@ -67,6 +68,7 @@ export const getCountryReport = (
         },
       },
       {
+        layout: 'noBorderLines',
         table: {
           widths: [50, 50, 50, '*', '*', '*'],
           body: [
