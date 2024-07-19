@@ -1,7 +1,9 @@
-import { StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { headerSection } from './sections/header.section';
-import { continents, countries as Country } from '@prisma/client';
-import { blob } from 'stream/consumers';
+import { countries as Country } from '@prisma/client';
+import {
+  StyleDictionary,
+  TDocumentDefinitions
+} from 'pdfmake/interfaces';
+import { footerSection, headerSection } from './sections';
 const styles: StyleDictionary = {
   header: {
     fontSize: 22,
@@ -34,17 +36,11 @@ export const getCountryReport = (
       title: title ?? 'Countries Report',
       subTitle: subTitle ?? 'List of countries',
     }),
-    footer: {
-      text: 'Este documento es una constancia de empleo y no representa un compromiso laboral',
-      style: {
-        alignment: 'center',
-      },
-    },
+    footer: footerSection,
     pageMargins: [40, 110, 40, 60],
     styles: styles,
     content: [
       {
-        layout: 'noBorders', // optional
         table: {
           // headers are automatically repeated if the table spans over multiple pages
           // you can declare how many rows should be treated as headers
